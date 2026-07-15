@@ -1,0 +1,13 @@
+[package]
+name = "qlab"
+description = "Experiments, exercises, and worked examples against the qsv simulator"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+authors.workspace = true
+
+[dependencies]
+qsv = { workspace = true }
+qcircuit = { workspace = true }
+rand = { workspace = true }

@@ -1,0 +1,16 @@
+[workspace]
+resolver = "3"
+members = ["crates/qsv", "crates/qcircuit", "crates/qlab"]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2024"
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/kebTech-LLC/quantum-lab"
+authors = ["Kyle Ebner"]
+
+[workspace.dependencies]
+num-complex = "0.4"
+rand = "0.9"
+qsv = { path = "crates/qsv" }
+qcircuit = { path = "crates/qcircuit" }
