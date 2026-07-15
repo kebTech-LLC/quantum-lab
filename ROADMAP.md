@@ -11,7 +11,7 @@ Reading: Nielsen & Chuang, "Quantum Computation and Quantum Information"
 
 | Phase | Topic | Status |
 |-------|-------|--------|
-| 0 | Scaffold: workspace, three crates, CI, GitHub | in progress |
+| 0 | Scaffold: workspace, three crates, CI, GitHub | done (2026-07-15) |
 | 1 | Single qubit: amplitudes, gates, measurement | not started |
 | 2 | Multi-qubit and entanglement | not started |
 | 3 | Circuits proper (qcircuit crate) | not started |
@@ -26,3 +26,5 @@ Reading: Nielsen & Chuang, "Quantum Computation and Quantum Information"
 - Workspace scaffolded: qsv, qcircuit, qlab crates.
 - Decision: repo lives under the kebTech-LLC GitHub org.
 - Decision: CI from day one (fmt, clippy, test on every push).
+- Pushed to https://github.com/kebTech-LLC/quantum-lab; first CI run green.
+- Phase 0 complete. Next: Phase 1, single-qubit state and gates in qsv.
