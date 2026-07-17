@@ -12,7 +12,7 @@ Reading: Nielsen & Chuang, "Quantum Computation and Quantum Information"
 | Phase | Topic | Status |
 |-------|-------|--------|
 | 0 | Scaffold: workspace, three crates, CI, GitHub | done (2026-07-15) |
-| 1 | Single qubit: amplitudes, gates, measurement | not started |
+| 1 | Single qubit: amplitudes, gates, measurement | in progress |
 | 2 | Multi-qubit and entanglement | not started |
 | 3 | Circuits proper (qcircuit crate) | not started |
 | 4 | Canonical algorithms: DJ, BV, Grover, QFT, phase estimation | not started |

@@ -22,9 +22,6 @@
 //! Phase 1 (single qubit) begins here: amplitudes, normalization, the standard
 //! gates, and measurement in the computational basis.
 
-#[cfg(test)]
-mod tests {
-    /// Phase 0 checkpoint: the workspace compiles and the test harness runs.
-    #[test]
-    fn scaffold_compiles() {}
-}
+pub mod qubit;
+
+pub use qubit::Qubit;
