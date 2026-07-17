@@ -1,0 +1,5 @@
+# getrandom 0.3 (via rand) has no default entropy source on bare wasm32;
+# this opts into the browser's crypto.getRandomValues. Pairs with the
+# wasm_js feature enabled in qsv-wasm's Cargo.toml.
+[target.wasm32-unknown-unknown]
+rustflags = ['--cfg', 'getrandom_backend="wasm_js"']

@@ -1,0 +1,20 @@
+[package]
+name = "qsv-wasm"
+description = "WebAssembly bindings for the qsv simulator — thin shim, no physics"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+authors.workspace = true
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+qsv = { workspace = true }
+wasm-bindgen = "0.2.126"
+js-sys = "0.3.103"
+console_error_panic_hook = "0.1.7"
+
+[target.'cfg(target_arch = "wasm32")'.dependencies]
+getrandom = { version = "0.3", features = ["wasm_js"] }

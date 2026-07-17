@@ -34,6 +34,8 @@ monorepo structures. All crates public (GitHub), dual-licensed MIT/Apache-2.0.
                 qsv/            # state-vector simulator core (the heart)
                 qcircuit/       # circuit representation, gate definitions, DSL
                 qlab/           # binary: experiments, exercises, worked examples
+                qsv-wasm/       # wasm-bindgen shim over qsv (no physics here)
+            web/                # Vue 3 + Vite + TS frontend (see below)
             notes/              # markdown notes per topic, written as I learn
 
     Future sibling repos (do not create yet):
@@ -64,6 +66,31 @@ monorepo structures. All crates public (GitHub), dual-licensed MIT/Apache-2.0.
 - RNG: `rand` crate, seedable for reproducible experiments.
 - Practical qubit ceiling for a dense simulator on the Mac Studio (128 GB):
   ~30 qubits (2^30 Complex64 = 16 GB). Design for n as a runtime parameter.
+
+## Web app and visualization architecture
+
+Decided 2026-07-17. The lab is web-first: the Rust core compiles to WebAssembly
+and runs in-browser; there is no backend server unless a future phase genuinely
+needs one (25+ qubit runs, long sweeps — add axum then, not before).
+
+- Dependency arrow points ONE way: web -> qsv-wasm -> qsv. The physics crates
+  never know wasm-bindgen or the browser exist. If the frontend needs a
+  quantum computation, it goes in qsv and is exposed through the shim.
+- qsv-wasm is a thin cdylib shim, the only crate touching wasm-bindgen.
+- Zero-copy contract: amplitude data is exposed to JS as Float64Array views
+  into wasm linear memory — re-acquired each read, never stored (memory growth
+  detaches views), never serialized per frame.
+- Frontend: Vue 3 + Vite + TypeScript, no UI framework, latest stable
+  versions of all packages (upgrade freely; this repo tracks latest).
+- Frontend patterns are Kyle's proven cnctd.world architecture — four layers
+  (components/views/models/state+modules), reactive class singletons, Vue
+  files as thin reactive remotes with ALL business logic in TS files.
+  Full rules: .claude/rules/frontend.md, enforced by .claude/hooks/.
+- Build: web/ npm scripts drive wasm-pack (pinned as npm devDependency);
+  generated pkg/ is gitignored. `npm run build` = wasm + typecheck + bundle.
+- The qlab CLI remains the fastest loop for checkpoint tests; the web app is
+  the visualization surface (Bloch sphere, amplitude bars, histograms). First
+  real UI lands after Phase 1 checkpoints pass, as its own milestone.
 
 ## Roadmap
 
